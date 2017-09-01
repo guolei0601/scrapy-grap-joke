@@ -7,7 +7,7 @@ from scrapy.selector import Selector
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.linkextractors import LinkExtractor
 
-class DmozSpider(scrapy.Spider):
+class StorySpider(scrapy.Spider):
     name = "joke"
     allowed_domains = ["jokeji.cn"]
     start_urls = [
