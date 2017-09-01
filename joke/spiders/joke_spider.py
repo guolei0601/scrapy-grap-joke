@@ -23,21 +23,21 @@ class DmozSpider(scrapy.Spider):
     #     Rule(LinkExtractor(allow='/list'),callback='parse',follow=False),
     #     #Rule(LinkExtractor(allow='_list'),callback='parse_item')
     # )
-
-    def parse(self,response):
-        last_url = response.xpath('//div[@class="next_page"]/a/@href').extract()[-1]
-        res = last_url.split('_')
-        #print res
-        type_list = res[0]
-        num_list = res[1]
-        #print num_list
-        total  = int(num_list.split('.')[0])
-        #print total
-        for i in range(1,total + 1):
-            print type_list + '_' + str(i) + '.htm'
-        #last_url = response.urljoin(last_url)
-        #print last_url
-
+    #
+    # def parse(self,response):
+    #     last_url = response.xpath('//div[@class="next_page"]/a/@href').extract()[-1]
+    #     res = last_url.split('_')
+    #     #print res
+    #     type_list = res[0]
+    #     num_list = res[1]
+    #     #print num_list
+    #     total  = int(num_list.split('.')[0])
+    #     #print total
+    #     for i in range(1,total + 1):
+    #         print type_list + '_' + str(i) + '.htm'
+    #     #last_url = response.urljoin(last_url)
+    #     #print last_url
+    #抓取具体分类链接
     def parse(self, response):
 
         for sel in response.xpath('//td[@width="119"]'):
@@ -52,7 +52,7 @@ class DmozSpider(scrapy.Spider):
             #yield item
             yield scrapy.Request(url,self.parse_list_url)
         #return response.url
-    #
+    #抓取每个分类的所有分页链接
     def parse_list_url (self,response):
         last_url = response.xpath('//div[@class="next_page"]/a/@href').extract()[-1]
         res = last_url.split('_')
@@ -68,7 +68,7 @@ class DmozSpider(scrapy.Spider):
             url = type_list + '_' + str(i) + '.htm'
             url = response.urljoin(url)
             yield scrapy.Request(url,self.parse_detail)
-
+    #抓取每个分页中的所有链接
     def parse_detail(self,response):
         for sel in response.xpath('//div[@class="list_title"]/ul/li'):
             item = {}
@@ -77,7 +77,7 @@ class DmozSpider(scrapy.Spider):
             url =  response.urljoin(link)
             item['url'] = url
             yield scrapy.Request(url,self.parse_content)
-
+    #抓取每个详细链接的内容
     def parse_content(self,response):
         item ={}
         url =  response.url
