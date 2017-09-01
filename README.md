@@ -1,7 +1,7 @@
 # scrapy-grap-joke
 A source code to  grap jokes from a  joke site.
 The code use scrapy framework ,so if you want to let it work ,you should install scrapy.
-The database is my local database .  You should create your own database, and change the setting.py and the db configure.
+The database is my local database .  You should create your own database and change the setting.py the db configure.
 There is only one table in the database . In my project , it calls joke_detail. the sql is :
 
 CREATE TABLE `joke_detail` (
