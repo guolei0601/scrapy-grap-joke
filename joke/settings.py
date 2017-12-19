@@ -15,7 +15,7 @@ SPIDER_MODULES = ['joke.spiders']
 NEWSPIDER_MODULE = 'joke.spiders'
 ITEM_PIPELINES = {
     'joke.pipelines.JokePipeline': 300,
-    'joke.pipelines.JokePipelineToMYSQL': 300,
+    #'joke.pipelines.JokePipelineToMYSQL': 300,
 }
 
 DOWNLOAD_DELAY = 1.5
