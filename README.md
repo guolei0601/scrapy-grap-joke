@@ -1,6 +1,6 @@
 
 # scrapy-grap-joke
-为学习需要，本人注释掉以下sql语句和入库操作。
+为学习需要，本人注释掉以下sql语句和入库操作，使用者可以不用建表。数据最后以json形式存取到文件中。
 
 /* A source code to  grap jokes from a  joke site.
 The code use scrapy framework ,so if you want to let it work ,you should install scrapy.
